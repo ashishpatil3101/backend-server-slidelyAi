@@ -19,7 +19,7 @@ Follow these instructions to set up and run the API on your local machine.
 
     ```bash
     git clone https://github.com/ashishpatil3101/backend-server-slidelyAi
-    cd backend
+    cd src
     ```
 
 2. **Install dependencies:**
