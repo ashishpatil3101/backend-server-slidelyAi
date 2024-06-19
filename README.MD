@@ -1,52 +1,83 @@
-Express Form Submission Server
-This repository contains a simple Express server application for handling form submissions. It includes endpoints for submitting, reading, and deleting form submissions stored in a JSON file (db.json).
+# Form Submission API
 
-Getting Started
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+## Overview
 
-Prerequisites
-Make sure you have Node.js and npm installed on your machine. If not, you can download and install them from nodejs.org.
+This API provides endpoints for handling form submissions. It allows users to submit form data, read existing submissions, and delete submissions. Submissions are stored in a JSON file (`db.json`).
 
-Installing
-Clone the repository and install dependencies:
+## Getting Started
 
-bash
-Copy code
-git clone <repository-url>
-cd <repository-directory>
-npm install
-Setting Up the Database
-Before starting the server, ensure the db.json file exists in the root directory of the project. If it doesn't exist, create an empty db.json file.
+Follow these instructions to set up and run the API on your local machine.
 
-Starting the Server
-To start the server, run:
+### Prerequisites
 
-bash
-Copy code
-npm start
-The server will start on http://localhost:3000.
+- Node.js installed on your machine
+- npm (Node Package Manager)
 
-API Endpoints
-The following endpoints are available:
+### Installation
 
-GET /ping: Checks if the server is running.
-POST /submit: Submits a form with JSON data containing Name, Email, Phone, GithubLink, and StopwatchTime.
-GET /read?index=<index>: Retrieves a submission by its index in the db.json array.
-DELETE /delete?index=<index>: Deletes a submission by its index in the db.json array.
-Example Usage
-Submit a Form:
+1. **Clone the repository:**
 
-bash
-Copy code
-curl -X POST -H "Content-Type: application/json" -d '{"Name":"John Doe","Email":"john@example.com","Phone":"1234567890","GithubLink":"https://github.com/johndoe","StopwatchTime":120}' http://localhost:3000/submit
-Read a Submission:
+    ```bash
+    git clone https://github.com/ashishpatil3101/backend-server-slidelyAi
+    cd backend
+    ```
 
-bash
-Copy code
-curl http://localhost:3000/read?index=0
-Delete a Submission:
+2. **Install dependencies:**
 
-bash
-Copy code
-curl -X DELETE http://localhost:3000/delete?index=0
-Replace 0 with the index of the submission you want to retrieve or delete.
+    ```bash
+    npm install
+    ```
+
+3. **Create the `db.json` file:**
+
+    Create a `db.json` file in the root(src/db.json) directory and initialize it with an empty array `[]`.
+
+4. **Start the server:**
+
+    ```bash
+    npm start
+    ```
+
+   The server will start on `http://localhost:3000`.
+
+## API Endpoints
+
+### Ping
+
+- **URL**: `/ping`
+- **Method**: `GET`
+- **Description**: Checks if the server is running.
+
+### Submit a Form
+
+- **URL**: `/submit`
+- **Method**: `POST`
+- **Request Body**:
+    ```json
+    {
+      "Name": "John Doe",
+      "Email": "john.doe@example.com",
+      "Phone": "1234567890",
+      "GithubLink": "https://github.com/johndoe",
+      "StopwatchTime": 120
+    }
+    ```
+- **Description**: Submits a form with `Name`, `Email`, `Phone`, `GithubLink`, and `StopwatchTime`. Validates inputs and stores the submission in `db.json`.
+
+### Read a Submission
+
+- **URL**: `/read?index=<index>`
+- **Method**: `GET`
+- **Query Parameters**:
+    - `index`: Index of the submission to retrieve.
+- **Description**: Retrieves a submission from `db.json` by index.
+
+### Delete a Submission
+
+- **URL**: `/delete?index=<index>`
+- **Method**: `DELETE`
+- **Query Parameters**:
+    - `index`: Index of the submission to delete.
+- **Description**: Deletes a submission from `db.json` by index.
+
+

@@ -14,7 +14,13 @@ const writeSubmissions = (submissions: Submission[]): void => {
 };
 
 export const ping = (req: Request, res: Response): void => {
-  res.json({ success: true});
+  try {
+    res.json({ success: true});
+
+  } catch (error) {
+    res.json({ success: false});
+
+  }
 };
 
 export const submit = (req: Request, res: Response): void => {
